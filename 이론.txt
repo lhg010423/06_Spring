@@ -1,0 +1,19 @@
+* framework랑 library 차이점
+framework 없으면 개발을 못함
+library 없어도 불편하지만 개발 가능
+
+Spring Legacy(MVC) / Boot
+표준                    /이것도 표준으로 인정
+수동                    /자동
+세팅하는게 힘듬      /세팅 쉬움
+jdk11버전까지만지원/
+
+영속성 : 데이터를 영구적으로 저장하는거
+
+DBCP(Data Base Connection Pool) : Connection을 알아서 만들어주고 반납해줌
+
+**************** 설치 *****************
+
+https://spring.io/tools
+에서 윈도우 버전설치
+기존에 있던 lombok.jar를 다운받고 압축풀었던 파일중에 sts-4.22.0.RELEASE 파일 안에 복붙한다
