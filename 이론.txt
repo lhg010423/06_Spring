@@ -17,3 +17,36 @@ DBCP(Data Base Connection Pool) : Connection을 알아서 만들어주고 반납
 https://spring.io/tools
 에서 윈도우 버전설치
 기존에 있던 lombok.jar를 다운받고 압축풀었던 파일중에 sts-4.22.0.RELEASE 파일 안에 복붙한다
+sts-4.22.0.RELEASE 파일 안에서 shift + 우클릭으로 powershell 을 실행하고
+java jar .\lombok.jar + 엔터를 하면 화면이 나옴, 왼쪽에 버튼을 누루고 sts-4.22.0.RELEASE 파일안에
+SpringTollSuite4 실행파일 선택후 확인
+
+
+프로젝트 만들기*****************************
+Create new Spring Starter Project 클릭
+type : Gradle - Groovy
+Packagin : jar
+Java Version : 17
+Janguage : Java
+Group : edu.kh
+Package : edu.kh.demo
+Next
+Spring Boot DevTools
+Lombok
+Spring Configuration Processor
+Thymeleaf
+Spring Web
+
+Templates
+forward나 redirect같은 응답페이지는 src/main/resources/templates 가 기준이다
+
+static == webapp
+
+application..properties 는 프로젝트에 전반적인 설정을 적용시키는 거다
+
+ctrl + s 저장 할때 가운데 UTF-8을 못눌렀으면 application.properties 우클릭
+Properties - Resources - Text file encoding - Other 여기에서 UTF-8 을 설정하고 확인
+
+HTTP 의 기본 포트가 80 이다
+
+
