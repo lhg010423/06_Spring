@@ -27,9 +27,6 @@ public class MainController {
 		// src/main/resources/templates/common/main.html
 		
 		
-		
-		
-		
 		return "common/main";
 	}
 	
