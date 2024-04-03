@@ -95,7 +95,7 @@ http://www.mybatis.org/mybatis-3/ko
 이론*****************************
 mybatis는 jdbc프레임워크이다
 CRUD(Create, Read, Update, Delete) 를 쉽게 만들기위해 쓰는게 MyBatis이다
-
+https://mybatis.org/mybatis-3/ko/getting-started.html
 
 SqlSession = Connection + MyBatis
 Factory Bean = 스프링이 관리하는 공장
@@ -146,8 +146,11 @@ spring.datasource.hikari.auto-commit=false
 
 
 
-
-
+.gitignore에 설정된 파일 github에서 지우기*******************************
+git rm -r --cached .
+git add .
+git commit -m "240403"
+git push
 
 
 
