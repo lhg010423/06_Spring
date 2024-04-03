@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.zaxxer.hikari.HikariConfigMXBean"><rhs name\="com.zaxxer.hikari.HikariConfig"/></lhs><lhs name\="com.zaxxer.hikari.HikariConfig"><rhs name\="com.zaxxer.hikari.HikariConfig"/></lhs></history>
+=======
+>>>>>>> b349071bfe541a6304b2b0b06a9f3437386a9c11
 content_assist_number_of_computers=14
 eclipse.preferences.version=1
 org.eclipse.jdt.internal.ui.navigator.layout=2
