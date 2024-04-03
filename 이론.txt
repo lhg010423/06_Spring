@@ -50,3 +50,110 @@ Properties - Resources - Text file encoding - Other 여기에서 UTF-8 을 설�
 HTTP 의 기본 포트가 80 이다
 
 
+*********************************
+
+Spring에서는 xml을 사용할 환경이 없음
+MarketPlace에서 플러그인을 해야한다
+
+Help - Eclipse Marketplace - xml 검색 - Eclipse XML Editors and Tools 3.33 Install - confrim
+- 동의 하고 finish - Trust Artifacts 가뜨면 PGP 체크하고 확인한다
+
+
+Mybatis를 이용하기 위해 XML 파일 DTD 추가하는 법***********************
+Window - Preferences - xml검색 - XML Catalog - User Specified Entries 클릭 후 Add
+
+Config
+Location : http://mybatis.org/dtd/mybatis-3-config.dtd
+Key type : Public ID
+Key : -//mybatis.org//DTD Config 3.0//EN
+
+Mapper
+Location : http://mybatis.org/dtd/mybatis-3-mapper.dtd
+Key type : Public ID
+Key : -//mybatis.org//DTD Mapper 3.0//EN
+
+이 두가지 추가하고
+Apply and Close 클릭
+*********************************************************************
+
+mybatis-config.xml 에서 오류날 때******************************************
+Window - Preferences - XML (Wild WebDeveloper) 클릭
+- Downlod external resources like referenced DTD, XSD 체크후 Apply
+
+
+
+MyBatis 설정하는 법******************************************************
+
+http://www.mybatis.org/mybatis-3/ko
+
+
+
+
+
+
+
+이론*****************************
+mybatis는 jdbc프레임워크이다
+CRUD(Create, Read, Update, Delete) 를 쉽게 만들기위해 쓰는게 MyBatis이다
+
+
+SqlSession = Connection + MyBatis
+Factory Bean = 스프링이 관리하는 공장
+
+** Connection Pool **
+Connection : DB 연결 정보를 담고 있는 객체(이게 있어야 JDBC 수행 가능)
+Pool : 웅덩이, 수영장... 모여있는 곳
+Connection Pool : Connection이 모여있는 곳
+
+기존에 했던 방법
+servlet -> service(getConnection == 커넥션생성) -> dao
+		<--- close(conn)
+비효율적이다
+이걸 효율적으로 해주는게 Connection Pool이다
+-> Server 실행 시 DB와 연결된 Connection을 일정 개수 생성
+-> 클라이언트 요청 시 만들어진 Connection 대여
+-> 요청이 처리 완료되면 다시 Connection 반납 받음
+* 생성/소멸(반환) 걸리는 시간이 현격히 감소
+* 대기열 + DB 연결 과부화 예방
+
+
+** config.properties **
+DB연결 정보를 가지고있는 파일은 github에 올리면 보안상 문제가 있다
+config.properties 만들기
+src/main/resources 에서 새로만들기 file 을 선택한후 config.properties 라는 이름으로 만든다
+UTF-8 설정이 안돼있어서 한글이 깨지니 config.properties 우클릭후 Properties 클릭
+Other -> UTF-8 선택후 Apply
+그리고 아래 내용 복붙
+@@@@@@@@@@@@@@@@@@@@@@
+#오라클 DB 연결 정보
+spring.datasource.hikari.driver-class-name=oracle.jdbc.driver.OracleDriver
+spring.datasource.hikari.jdbc-url=jdbc:oracle:thin:@IP주소:포트번호:DB이름
+spring.datasource.hikari.username=계정명
+spring.datasource.hikari.password=비밀번호
+# HikariCP Connection Pool Properties
+#풀이 연결을 사용할 수 있을 때까지 대기하는 최대 시간(ms)을 지정
+spring.datasource.hikari.connection-timeout=30000
+#풀의 최대 연결 수 설정
+spring.datasource.hikari.maximum-pool-size=20
+#연결이 풀에서 유휴 상태로 있을 수 있는 최대 시간(ms)을 지정
+spring.datasource.hikari.idle-timeout=600000
+#연결 풀의 이름을 지정
+spring.datasource.hikari.pool-name=MyHikariCP
+#자동 커밋 끄기
+spring.datasource.hikari.auto-commit=false
+
+위 복붙한 내용에서 db연결정보 수정후 저장
+
+
+
+
+
+
+
+
+
+
+시험  **********************************************************************
+서블릿 끝까지
+오청 보내고 파리미터값 받고 컨트롤러에서 가공하고 forward하고 forward한 곳에서 처리하는데 에러남
+스프링 데모프로젝트 1번만 알면 다품
