@@ -1,0 +1,164 @@
+팀장---------------------------------------
+1번-----------------------------------
+
+일단 파일에 아무 스프링 자파 프로젝트 만들고
+
+만든 프로젝트 파일 경로로 들어가서 (프로젝트가 있는 폴더말고 프로젝트 안까지 들어가야함)
+C:\workspace\github\demo
+git bash를 함
+
+
+github : 프로젝트가 있는 파일명
+demo : 프로젝트명
+
+github에서 새 레파지토리를 만들고 gitbash에 복붙한다
+
+echo "# teamProjectPractice" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/lhg010423/teamProjectPractice.git
+git push -u origin main
+
+하면 .gitignore 같은거는 git으로 안올라가져있어서
+git add .
+git commit -m "Project"
+git push
+를 한다
+
+여기까지 하고 팀원 1번 이동@@
+------------------------------------
+
+2번----------------------------------------------------
+git 브랜치가 main(master) 하나 밖에 없다
+main 이 기준으로 배포를 하는거고
+개발용 브랜치인 development를 하나 만든다
+
+
+프로젝트 - main(master)
+	ㄴdevelopment - 팀장
+		        ㄴ 팀원1
+		        ㄴ 팀원2
+
+팀장(팀원) pr을 하면 development에 올린다
+팀장 주도하에 문제가 없는지 검사하고
+Merge를 한다 그다음 팀장 주도하에 pull을 한다
+
+프로젝트안에서  gitbash를 들어가서
+git branch 만들브랜치이름
+ex)  git branch development
+
+그다음 git branch 를 하면
+브랜치 목록이 나온다 확인되면
+
+깃허브에 브랜치를 추가해줘야 한다
+
+다시 gitbash에
+git push origin 만든브랜치이름
+ex)   git push origin development
+
+엔터를 하고 github에 main 아래화살표를 눌러 추가된 브랜치 확인
+
+gitbash 에
+git checkout development
+를 입력하면 만들 브랜치로 이동한다
+
+git checkout -b hyunggu
+를 입력하면 브랜치가 만들어지면서 이동한다
+
+git push origin hyunggu
+를 입력하여 github에 브랜치를 추가해준다
+
+팀원 2번으로 이동
+
+
+3번  ---------------------------------------------------
+팀장이 github 프로젝트 Settings -> Collaborators
+-> Add people 누른뒤 팀원들 이메일을 추가한다
+
+팀원 3번으로 이동
+
+
+4번 -----------------------------------------------
+
+gitbash 에
+code .
+를 치면 vscode가 들어가낟
+
+
+
+
+
+
+
+
+
+팀원@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+1번------------------------
+팀장 깃허브 프로젝트에 들어간뒤 <> Code 클릭 주소 복사하고
+gitbash에
+git clone https://github.com/lhg010423/teamProjectPractice.git
+으로 복사후
+ls
+로 확인한다
+cd teamprojectPractice/  엔터 (cd team 까지만 치고 tab 키누르면 자동완성됨)
+그리고 엔터
+그럼 gitbash 위치가 바뀐다
+
+팀장 2번으로 이동
+
+
+2번 -----------------------------
+팀원 gitbash에는 업데이트를 안해서
+git branch 를 하면없다
+git branch -a
+git remote update
+
+git branch -a 로 확인해보면
+추가된걸 볼수 있다
+
+팀장이 추가한 브랜치를 가져와야한다
+                           (가지고오고싶은 브랜치명)
+git checkout -t origin/development
+
+이제 팀원 브랜치도 만든다
+
+git checkout -b gildong
+만들고 이동
+
+git push origin gildong
+으로 github에 올린다
+
+팀장 3번으로 이동
+
+
+3번 -------------------------------------
+
+git push origin gildong
+을 다시하면 github 프로젝트에 팀원 브랜치가 추가된다
+
+팀장 4번으로 이동
+
+
+
+4번 ----------------------------------
+
+
+
+
+
+파일 올리고 수정 후 다시 받기@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+git add .
+git commit -m "xxx"
+git push
+
+깃허브로 이동
+Pull requests -> New pull request -> Create pull request
+
+팀원들도 올리고
+merge하고
+다시 받을때
+개발용 브랜치에서 받는다
+git pull origin development
+

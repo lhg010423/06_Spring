@@ -45,8 +45,11 @@
                
                 <td th:text="*{todoNo}">할 일 번호</td>
 
+                <!-- 위에 th:object를 썼기때문에 ${todoNo} 가 아닌
+                    *{todoNo}를 쓴다 -->
                 <td>
-                    <a th:text="*{todoTitle}">할 일 제목</a>
+                    <a th:href="@{/todo/detail(todoNo=*{todoNo})}"
+                    th:text="*{todoTitle}">할 일 제목</a>
                 </td>
 
                 <td th:text="*{complete}">완료 여부(Y/N)</td>
