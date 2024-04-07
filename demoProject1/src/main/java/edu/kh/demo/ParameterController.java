@@ -114,7 +114,7 @@ public class ParameterController {
 		log.debug("price : " + price);
 		log.debug("publisher : " + publisher);
 		
-		// 김종조 신수민
+		
 		return "redirect:/param/main";
 	}
 	
