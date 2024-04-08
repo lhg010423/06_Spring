@@ -74,6 +74,11 @@ Key : -//mybatis.org//DTD Mapper 3.0//EN
 
 이 두가지 추가하고
 Apply and Close 클릭
+
+mybatis-config.xml 생성
+src/main/resources’폴더에 mybatis-config.xml 파일 생성
+
+
 *********************************************************************
 
 mybatis-config.xml 에서 오류날 때******************************************
@@ -180,3 +185,10 @@ A 가 안끝났어도 A, B가 동시에 수행중이다
 동시에 여러개 가능
 
 Ajax 버전(비동기식)
+
+
+
+
+
+
+
