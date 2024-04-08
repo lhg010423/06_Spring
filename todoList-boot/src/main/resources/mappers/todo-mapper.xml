@@ -127,6 +127,19 @@
   	</delete>
   	
   	
+  	<!-- 전체 할 일 개수 조회 -->
+  	<select id="getTotalCount" resultType="_int">
+  		SELECT COUNT(*) FROM TB_TODO
+  	</select>
+  	
+  	
+  	<update id="updateComplete" parameterType="_int">
+  		UPDATE TB_TODO SET
+  		COMPLETE - #{complete}
+  		
+  	</update>
+  	
+  	
   	
   	
   	
