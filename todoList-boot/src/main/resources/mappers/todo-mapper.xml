@@ -118,6 +118,9 @@
   		TODO_CONTENT = #{todoContent}
   		WHERE TODO_NO = ${todoNo}
   	</update>
+  	<!-- 완료여부변경 : js에서 바꾼 값이 sql에 대입된다 -->
+  	
+  	
   	
   	
   	<!-- 할 일 삭제 -->
@@ -133,11 +136,6 @@
   	</select>
   	
   	
-  	<update id="updateComplete" parameterType="_int">
-  		UPDATE TB_TODO SET
-  		COMPLETE - #{complete}
-  		
-  	</update>
   	
   	
   	

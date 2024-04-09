@@ -67,10 +67,6 @@ public interface TodoService {
 	List<Todo> selectList();
 
 
-	/** 완료 여부 변경
-	 * @param todoNo
-	 * @return 
-	 */
-	int updateComplete(int todoNo);
+	
 
 }

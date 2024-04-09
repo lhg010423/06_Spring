@@ -1,0 +1,79 @@
+자바에서 Spring Project 만들기
+
+구글 드라이브 06_Framework - 공유 - boardProject 에서
+board-boot.sql 다운받기
+
+최고 관리자 sys로 들어가기
+계정생성
+spring_lhg
+spring1234
+
+spring_lhg 계정으로 바꾸고 전부 실행
+
+자바 스프링 프로젝트 Run 해보면 안됨
+build.gradle가 DB에 내용이 없다는걸 확이해서 그럼
+build.gradle -> dependencies에 있는
+implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+이 3개 주석처리하기
+
+DB를 주석처리해야하는데 주석처리해도 이미 라이브러리에 있음
+프로젝트 우클릭 Gradle - Refreash Gradle Project 클릭
+
+Run 해보면 build.gradle에 dependencies 에 있는
+testImplementation 'org.springframework.security:spring-security-test'
+에서 기본 제공해주는 로그인 페이지가 나옴 사용하기 싫으면
+BoardProjectBootApplication.java 실행 파일에
+@SpringBootApplication 뒤에 (exclude= {SecurityAutoConfiguration.class})를 붙인다
+@SpringBootApplication(exclude= {SecurityAutoConfiguration.class})
+
+
+application.properties 에서
+
+------------------------------------------------------------
+# 서버 포트 번호 80으로 변경
+server.port=80
+
+# 서버포트 번호 80으로 변경
+server.port=80
+
+#Spring devbTools 관련 설정
+spring.devtools.livereload.enabled=true
+spring.devtools.restart.enabled=true
+spring.thymeleaf.cache=false
+
+# 로깅 레벨 지정
+# (trace < debug < info < warn < error < fatal )
+logging.level.edu.kh.project=debug
+
+# URL에 jsessionId가 보여질 때 jsessionId를 쿠키에 담으려는 설정
+server.servlet.session.tracking-modes=cookie
+------------------------------------------------------------
+
+를 치고 저장하면 창 하나가 뜨는데 UTF-8 클릭
+전에 쓰던거 복붙한건데 로깅 레벨 지정에서
+logging.level.edu.kh.todo=debug 에서 todo를
+project로 바꾸기
+
+전에 했던 todoList에서 resources 안에 있는
+config.properties
+mybatis-config.xml
+를 src.main/복붙하기 없으면 구글 내 드라이브에 있음
+mybatis-config.xml 는 고칠거 없는데
+config.properties 는 우클릭 후 properties 클릭
+Other UTF-8 선택후 Apply
+user랑 password
+spring_lhg
+spring1234
+로 고치기
+
+
+------------------------------이론------------------------------
+쿠키(클라이언트 관리)
+세션(서버에서 관리함)
+
+04/09 11:43 jsession 설명 꼭 듣기
+
+
+
