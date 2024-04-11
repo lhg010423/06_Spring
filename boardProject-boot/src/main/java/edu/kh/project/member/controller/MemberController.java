@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 
-
+// 모델에 추가된 거를 세션에 올리는것
 @SessionAttributes({"loginMember"})
 @Controller
 @Slf4j
@@ -129,6 +129,8 @@ public class MemberController {
 	 * 		- @SessionAttributes 로 등록된 세션을 만료
 	 * 		- 서버에서 기존 세션 객체가 사라짐과 동시에
 	 * 		  새로운 세션 객체가 생성되어 클라이언트와 연결
+	 * 		ex) 로그아웃을 요청한 사용자의 sessionId와 관련된 모든정보가
+	 * 			사라지고 로그아웃을 요청하지않은 다른 사용자들은 영향이 없다
 	 * 
 	 * @return
 	 */
