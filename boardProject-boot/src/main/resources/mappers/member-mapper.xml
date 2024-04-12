@@ -33,5 +33,41 @@
    </select>
    
    
+   <!-- MemberMapper.java 에서 메서드 명이랑 id값이랑 같아야한다 -->
+   <select id="checkNickname" resultType="_int">
+   		SELECT COUNT(*)
+   		FROM "MEMBER"
+   		WHERE MEMBER_DEL_FL = 'N'
+   		AND MEMBER_NICKNAME = #{memberNickname}
+   </select>
+   
+   
+   <!-- 회원가입 -->
+   <insert id="signup">
+   		INSERT INTO "MEMBER"
+   		VALUES(SEQ_MEMBER_NO.NEXTVAL,
+	   		#{memberEmail},
+	   		#{memberPw},
+	   		#{memberNickname},
+	   		#{memberTel},
+	   		#{memberAddress},
+	   		NULL,
+	   		DEFAULT,
+	   		DEFAULT,
+	   		DEFAULT
+   		)
+   </insert>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
 </mapper>
