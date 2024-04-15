@@ -20,7 +20,7 @@ import com.zaxxer.hikari.HikariDataSource;
  * - 설정용 클래스임 명시
  * + 객체로 생성해서 내부 코드를 서버 실행시 모두 수행
  * 
- * @PropertySourc("경로")
+ * @PropertySource("경로")
  * - 지정된 경로의 properties 파일 내용을 읽어와 사용
  * - 사용할 properties 파일이 다수일 경우
  *   해당 어노테이션을 연속해서 작성하면 됨

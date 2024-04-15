@@ -1,0 +1,40 @@
+매개변수 차이점
+@RequestParam
+ - 하나의 HTTP 요청 파라미터 값을 가져올 수 있다
+ - requst 형식
+Model
+ - 컨트롤러에서 생성된 여러 데이터를 한 번에 뷰로 전달할 때 주로 사용됩니다.
+ - 뷰에서 컨르롤러로 전달도 된다
+ - Model 객체에 추가된 데이터는 JVM(Java Virtual Machine) 내부의 힙(heap) 메모리에 저장되어 있으며,
+   이 데이터는 해당 요청의 처리가 완료된 후에 메모리에서 소멸됩니다.
+HttpServletRequest
+ - HTTP 요청에 관련된 모든 정보를 가져올 수 있습니다.
+ - 요청 헤더, 파라미터, 쿠키, 세션 등의 모든 정보를 가져올 수 있습니다.
+ - 따라서 다양한 정보를 가져와야 할 때 주로 사용됩니다.
+
+
+
+
+1번: main.html에서 post로 보낸 값이 javaController에서 받을 때는
+HttpServletRequest 객체나 @RequestParam 어노테이션을 사용하여 받을 수 있습니다.
+보통 @RequestParam 어노테이션을 사용하여 개별적으로 값들을 받는 것이 일반적입니다.
+예를 들어, @RequestParam("inputName") String inputName과 같이 사용하여
+inputName이라는 이름의 파라미터 값을 String 형태로 받을 수 있습니다.
+
+2번: main.html에서 값을 보냈을 때, 해당 값들은 HTTP 요청의 일부로 전송됩니다.
+이 값들은 HttpServletRequest 객체에 담겨져 Controller로 전달됩니다.
+Controller에서는 받은 값을 Model 객체에 저장하여 ex2.html로 전달합니다.
+Thymeleaf 템플릿 엔진은 이 값을 받아 렌더링하여 클라이언트에게 보여줍니다.
+이 과정에서 HTTP 요청과 응답 사이에는 서버 측의 메모리에 저장되는 동안에만 값이 유지되며,
+HTTP 프로토콜의 특성상 요청과 응답이 완료되면 값은 사라집니다.
+
+3번: Thymeleaf에서 ${param.변수명}은 HTTP 요청에 포함된 파라미터의 값을 의미합니다.
+Controller로부터 전달받은 Model 객체에 담긴 파라미터 값을 Thymeleaf에서 접근할 때 사용됩니다.
+여기서 param은 Thymeleaf에서 사용되는 특별한 표기법으로,
+HTTP 요청의 파라미터에 접근하기 위한 것입니다.
+Thymeleaf는 이러한 편의성을 제공하여 HTML 템플릿에서
+HTTP 요청의 파라미터 값을 간편하게 사용할 수 있도록 합니다.
+
+
+상대주소설명 04/15 11:38
+04/15 14:18
