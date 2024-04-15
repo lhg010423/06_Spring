@@ -49,7 +49,7 @@ function getTotalCount() {
     // (fetch : 가지고 오다)
 
     fetch("/ajax/totalCount") // 비동기 요청 수행 -> Promise 객체 반환
-    // javaController(ajax) 로 감
+    // AjaxController.java 로 감
     .then( response => { // javaController(ajax) 에서 응답이 됬을 때
         // response : 비동기 요청에 대한 응답이 담긴 객체
 

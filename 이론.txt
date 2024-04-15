@@ -20,6 +20,20 @@ rollbackFor 속성 : 어떤 예외가 발생했을 때 rollback 할 지 지정
 예)
 @Transactional(rollbackFor = Exception.class) => 범위 예외 전체
 
+@ResponseBody
+- 컨트롤러 메서드의 반환값을
+  HTTP 응답 본문에 직접 바인딩하는 역할임을 명시
+- 컨트롤러 메서드의 반환값을
+  비동기 요청했던 HTML/JS 파일 부분에
+  값을 돌려보낼것이다 명시
+- forward/redirect 로 인식 X
+- 비동기를 받아주는 메서드
+
+
+
+
+
+
 
 
 
@@ -34,7 +48,20 @@ public Map<String, Object> selectAll() {
 Config----------------------------------------------------------------------------
 
 
-
+<settings>
+	<!-- Java -> DB로 INSERT,UPDATE 시 Java의 null 값을 DB의 NULL로 인식하도록 설정-->
+	<setting name="jdbcTypeForNull" value="NULL" />
+	<!-- DB의 UnderScore (_) 표기법 <-> Java의 Camel 표기법
+	두 표기법이 서로 변환 될 수 있도록 매핑하여
+	Java 필드명(memberId)과 DB 컬럼명(MEMBER_ID)가 서로 연결되게 함
+	Mybatis의 기능이다
+	-->
+	<!-- 
+		java에서 null : 참조하는 값이 없다
+		DB에서 null : 값이 없다
+	 -->	
+	<setting name="mapUnderscoreToCamelCase" value="true" />
+</settings>
 
 
 
