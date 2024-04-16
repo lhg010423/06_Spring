@@ -59,13 +59,21 @@
    </insert>
    
    
+   	<!-- 회원 목록 조회 -->
+   	<!-- 구해진 모든행이 List<Member>에 모임 -->
+	<select id="selectMemberList" resultType="Member">
+		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_DEL_FL
+		FROM "MEMBER"
+		ORDER BY MEMBER_NO
+	</select>
    
    
-   
-   
-   
-   
-   
+   	<!-- 비밀번호 초기화 -->
+	<update id="resetPw">
+		UPDATE "MEMBER" SET
+		MEMBER_PW = #{encPw}
+		WHERE MEMBER_NO = #{inputNo}
+	</update>
    
    
    

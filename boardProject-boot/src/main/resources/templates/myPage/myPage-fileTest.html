@@ -41,6 +41,20 @@
 
 
           * multipart/form-data  (무조건 POST에서만 동작)
+          <!--
+          form태그 안에 type="file"이 있으면 꼭 써야한다
+          <form enctype="multipart/form-data">
+          파일을 string형으로 처리하면 DB에서 못읽음  
+          -->
+          
+          <!--
+          HTTP 스펙 -> GET (권장X)
+          GET -> URL 데이터 첨부
+          ?memberName=홍길동?파일=ahrshstrhshhaerheqaheh(너무 김)
+
+          -> GET 단점
+          -> 데이터 보낼때 길이제한 있음
+          -->
 
            - 제출되는 여러 데이터 타입에 맞춰서 인코딩하여 제출
             문자열 -> String
@@ -52,10 +66,39 @@
 
 
         </pre>
-
-     	
         
+        <!--
+        다른 것들은 string으로 보내도 되는데 파일은
+        2진수로 보내야 해서 enctype="multipart/form-data"
+        를 쓴다 
+        -->
+        <form action="/myPage/file/test1"
+              method="POST"
+              enctype="multipart/form-data"
+        >
+        
+        <!-- 
+          GET 사용 가능, 단 권장X
+          -> GET 요청 데이터가 URL에 담긴다 -> 보안취약
+          -> URL로 통해서 보내는 데이터의 길이 제한있음
+        -->
+          <h3>업로드 테스트 1</h3>
 
+          <!-- type="file" 도 결국에는 Parameter
+              -> @RequestParam으로 처리 가능
+          -->
+          <input type="file" name="uploadFile">
+
+          <button class="myPage-submit">제출하기</button>
+        </form>
+      
+        <!-- a 태그의 download 속성
+          - href 속성에 작성된 요청에 대한 응답을 다운로드함
+         -->
+        <a th:if="${path != null}"
+          th:text="${path}"
+          th:href="${path}"
+        download>업로드한 파일</a>
 
       </section>
 
