@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -247,7 +248,7 @@ public class MemberController {
 	
 	@ResponseBody
 	@PutMapping("resetPw")
-	public int resetPw(@ResponseBody int inputNo) {
+	public int resetPw(@RequestBody int inputNo) {
 		
 		// @RequestParam은 input 태그 name=", ?memberName=홍길동 일때 쓴다
 		// main.js 에서 fetch body 부분에 inputNo을 만들었으니
