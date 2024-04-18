@@ -198,5 +198,6 @@ Ajax 버전(비동기식)
 
 04/11 10:06 SessionStates 설명 듣기
 04/11 10:18 쿠키설명 듣기
+04/17 9시 BoardProject 전체설명
 
 f12 -> Application -> Cookies -> 주소 확인 -> saveId가 있음

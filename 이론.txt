@@ -74,9 +74,14 @@ Config--------------------------------------------------------------------------
 
 
 
+클라이언트가 요청하고 요청받을 때 (Client <-> Dispatcher Servlet) 필터(Filter)가 사용됨
 
 
 
+Interceptor : 가로채는거 + 넣어주는거, Spring에서 제공하는 기능
+Dispatcher Servlet <-> Handler
+		ㄴ Controller
+		ㄴ View Resolver
 
 
 
