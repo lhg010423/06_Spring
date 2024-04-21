@@ -3,7 +3,7 @@ const goToList = document.querySelector("#goToList");
 
 goToList.addEventListener("click", () => {
     location.href = "/"; // 메인 페이지 요청
-
+    // 자바스크립트의 윈도우 객체 중에 하나다
 })
 
 // 완료 여부 변경 버튼 동작
@@ -11,6 +11,7 @@ const completeBtn = document.querySelector(".complete-btn");
 
 completeBtn.addEventListener("click", (e) => {
 
+    //              요소.dataset
     const todoNo = e.target.dataset.todoNo;
 
     // console.log(todoNo);
@@ -22,9 +23,10 @@ completeBtn.addEventListener("click", (e) => {
 
     complete = (complete === 'Y') ? 'N' : 'Y';
 
-    // 완료 여부 수정 요청하기
+    // 완료 여부 수정 요청하기(location은 get요청)
     location.href
         = `/todo/changeComplete?todoNo=${todoNo}&complete=${complete}`; // 리터럴 템플릿 : ``
+    // 기존에 ""를 쓰면 뒤에 + 로 이어붙이는게 귀찮아서 ``를 씀
 })
 
 

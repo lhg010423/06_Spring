@@ -68,6 +68,8 @@ function getTotalCount() {
         totalCount.innerText = result;
     });
 }
+getTotalCount(); // 함수 호출
+
 
 // completeCount 값 비동기 통신으로 얻어와서 화면 출력
 function getCompleteCount() {
@@ -158,6 +160,7 @@ addBtn.addEventListener("click", () => {
 //---------------------------------------------------------------------------
 
 // 비동기(ajax)로 할 일 상세 조회하는 함수
+// function selectTodo 랑 비슷하다 아래거는 화살표 함수
 const selectTodo = (url) => {
     // 매개변수 url == "/ajax/detail?todoNo=10" 형태의 문자열
 
@@ -496,4 +499,4 @@ document.addEventListener("keyup", (e) => {
 
 selectTodoList();
 getCompleteCount();
-getTotalCount(); // 함수 호출
+//getTotalCount(); // 함수 호출

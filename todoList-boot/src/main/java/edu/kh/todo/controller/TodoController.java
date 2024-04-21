@@ -92,6 +92,7 @@ public class TodoController {
 	/** 완료 여부 변경 
 	 * @param todo : 커맨드 객체 (@ModelAttribute 생략)
 	 * 				- todoNo, complete 두 필드가 세팅된 상태
+	 * 				- RequestParam 을 써도 되지만 2번써야되니 그냥 이거씀
 	 * @param ra
 	 * @return redirect:detail?todoNo= 할 일 번호(상대경로)
 	 */
@@ -114,6 +115,7 @@ public class TodoController {
 		// 현재 요청 주소 : /todo/changeComplete
 		// 응답 주소	  : /todo/detail
 		
+		// detail만 써도 /todo/detail로 바뀜
 		return "redirect:detail?todoNo=" + todo.getTodoNo(); // 상대경로
 	}
 	
