@@ -27,6 +27,9 @@
 					th:if="${boardType.boardCode} == ${boardCode}"
 					th:text="${boardType.boardName}"
 				>게시판 이름</h1>
+				<!-- h1 두번째 줄 ${boardCode} 는 BoardController.java에서
+					selectBoardList() 의 매개변수에서 가져온 거다
+					@PathVariable("boardCode") int boardCode -->
 
 			</th:block>
 
