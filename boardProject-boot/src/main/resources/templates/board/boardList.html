@@ -64,13 +64,22 @@
 						<th:block th:unless="${#lists.isEmpty(boardList)}">
 
 							<tr th:each="board : ${boardList}" th:object="${board}">
+								<!--       2             1                   3      -->
 								
 								<td th:text="*{boardNo}">게시글 번호</td>
 								
 								<td>
 									<!-- 썸네일 추가 예정 -->
 									
-									<a th:text="*{boardTitle}">게시글 제목</a>
+									<!-- 옛날방법 : /board/list?code=1&no=1960 -->
+									<!-- request scope에 boardCode가 있음,
+									 	boardNo는 위에 th:object 태그에 board에서 가져온다
+										${pagination.currentPage} 은 상세보기페이지에서 다시 목록으로 버튼을 누르면
+										cp값으로 cp번 목록으로 이동할 수 있게 query String으로 쓴거다
+										th:href에 {} 안에 없고 뒤에 () 에 쓰면 qnuery String이다 -->
+									<!-- 상세 조회 주소에 cp가 포함된 이유 : 상세 -> 목록으로 돌아올 때 사용 -->
+									<a th:href="@{/board/{boardCode}/{boardNo} (boardCode=${boardCode}, boardNo=*{boardNo}, ${pagination.currentPage})}"
+									th:text="*{boardTitle}">게시글 제목</a>
 									
 									<th:block th:text="|[*{commentCount}]|">댓글 수</th:block>
 								</td>
