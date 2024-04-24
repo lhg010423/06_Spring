@@ -49,7 +49,10 @@
                         
                         <!-- 비동기로 좋아요 누를 때 동작 (4/22 월요일 예정) -->
                         <!-- 좋아요 누른적이 있으면 fa-solid, 없으면 fa-regular 클래스 추가 -->
-                        <i class="fa-heart fa-regular" id="boardLike"></i>
+                        <i class="fa-heart" id="boardLike"
+                            th:classappend="*{likeCheck == 1} ? fa-solid : fa-regular"
+                        ></i>
+                        <!-- 위 session에 object로 board를 가져왔으니 likeCheck는 *을 씀 -->
 
                         <!-- 좋아요 개수 -->
                         <span th:text="*{likeCount}">0</span>
@@ -70,6 +73,17 @@
                     
                     <p> <span>조회수</span> [[*{readCount}]] </p>                    
                 </div>
+                <!-- 04/24 11:05
+                    1. 조회할 때 마다 증가(DB, 서버 부하)
+                    2. DB에 누가 어떤글을 조회했는가
+                        일정 기간 단위로 확인해서 증가
+                    3. local/session 스토리지(클라이언트) -> JS 사용가능, 서바 사용 X
+                    4. 쿠키를 이용한 조회수 증가(서버<->클라이언트, 보안에 취약 - 조작가능)
+                    5. In Memory DB (redis) -> 쿠팡 (K:V), redis에서 문제가 생기면 서버 다운됨,
+                        효율적이지만 어려움
+                    
+                    이 중에서 4번을 이용할 거임
+                -->
             </div>
 
 
@@ -153,6 +167,24 @@
 
     <th:block th:replace="~{common/footer}"></th:block>
 
+    <script th:inline="javascript">
+
+        // - loginMember가 null 인 경우 null 반환
+        const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호";
+
+        // 현재 게시글 번호를 전역 변수로 저장
+        const boardNo = /*[[${board.boardNo}]]*/ "게시글 번호";
+
+        // 현재 게시글 좋아요 여부를 전역 변수로 저장
+        let likeCheck = /*[[${board.likeCheck}]]*/ "좋아요 여부";
+
+    </script>
+    <!-- ? : 안전탐색연산자, 로그인이 안돼있을 때는 memberNo를 안씀 -->
+
+    <!-- JS에서 session에 있는 값을 못가져오니 html에서 session에 있는 값은
+        변수에 저장후 html의 변수를 js에서 가져다 쓴다 -->
+
+    <script src="/js/board/boardDetail.js"></script>
 
     
 </body>
