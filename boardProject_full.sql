@@ -539,3 +539,45 @@ CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
 ORDER SIBLINGS BY COMMENT_NO
 ;
 
+------------------------------------------------------------
+
+--INSERT INTO "BOARD_IMG"
+--(
+--	SELECT SEQ_IMG_NO.NEXTVAL, '경로1', '원본1', '변경1', 1, 2001 FROM DUAL
+--	UNION
+--	SELECT SEQ_IMG_NO.NEXTVAL, '경로2', '원본2', '변경2', 2, 2001 FROM DUAL
+--	UNION
+--	SELECT SEQ_IMG_NO.NEXTVAL, '경로3', '원본3', '변경3', 3, 2001 FROM DUAL
+--	
+--);
+-- SQL Error [2287] [42000]: ORA-02287: 시퀀스 번호는 이 위치에 사용할 수 없습니다
+-- 한번에 시퀀스 여러개 사용 불가
+
+INSERT INTO "BOARD_IMG"
+(
+	SELECT NEXT_IMG_NO(), '경로1', '원본1', '변경1', 1, 2001 FROM DUAL
+	UNION
+	SELECT NEXT_IMG_NO(), '경로2', '원본2', '변경2', 2, 2001 FROM DUAL
+	UNION
+	SELECT NEXT_IMG_NO(), '경로3', '원본3', '변경3', 3, 2001 FROM DUAL
+	
+);
+
+SELECT * FROM "BOARD_IMG";
+
+
+-- SEQ_IMG_NO 시퀀스의 다음 값을 반환하는 함수 생성
+CREATE OR REPLACE FUNCTION NEXT_IMG_NO
+-- 반환형
+RETURN NUMBER
+-- 사용할 변수
+IS IMG_NO NUMBER;
+BEGIN
+	SELECT SEQ_IMG_NO.NEXTVAL
+	INTO IMG_NO
+	FROM DUAL;
+	RETURN IMG_NO;
+END;
+;
+SELECT NEXT_IMG_NO() FROM DUAL;
+
