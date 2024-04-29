@@ -178,6 +178,10 @@
         // 현재 게시글 좋아요 여부를 전역 변수로 저장
         let likeCheck = /*[[${board.likeCheck}]]*/ "좋아요 여부";
 
+        //                       내츄럴템플릿
+        const userDefaultImage = /*[[#{user.default.image}]]*/ "기본이미지";
+        // message.properties에서 가져올때는 #를 씀
+
     </script>
     <!-- ? : 안전탐색연산자, 로그인이 안돼있을 때는 memberNo를 안씀 -->
 
@@ -185,7 +189,7 @@
         변수에 저장후 html의 변수를 js에서 가져다 쓴다 -->
 
     <script src="/js/board/boardDetail.js"></script>
-
+    <script src="/js/board/comment.js"></script>
     
 </body>
 </html>
