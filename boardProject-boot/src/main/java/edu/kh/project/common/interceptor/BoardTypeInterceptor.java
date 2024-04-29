@@ -16,11 +16,11 @@ import lombok.extern.slf4j.Slf4j;
 /*
 Interceptor : 요청/응답 가로채는 객체 (Spring 지원)
 
-Cline <-> Filter <-> Dispatcher Servlet <-> Interceptor <-> Controller ...
+Client <-> Filter <-> Dispatcher Servlet <-> Interceptor <-> Controller ...
 
 * HandlerInterceptor 인터페이스를 상속 받아서 구현 해야 한다.
 
-- preHandel  (전처리) : Dispatcher Servlet -> Controller 사이 수행
+- preHandle  (전처리) : Dispatcher Servlet -> Controller 사이 수행
 
 - postHandle (후처리) : Controller -> Dispatcher Servlet 사이 수행
 
@@ -35,9 +35,8 @@ public class BoardTypeInterceptor implements HandlerInterceptor{
 	@Autowired
 	private BoardService service;
 	// 04/22 10:28
-	// BoardTypeInterceptor 의 기본생성자를 사용해야하는데 
-	// @RequiredArgsConstructor 이거를 쓰면 사용을 못한다
-	
+	// Interceptor 에서 BoardTypeInterceptor 의 기본생성자를 사용해야하는데 
+	// @RequiredArgsConstructor 이거를 쓰면 final 이어서 사용을 못한다
 
 	// 전처리
 	@Override
@@ -60,18 +59,19 @@ public class BoardTypeInterceptor implements HandlerInterceptor{
 			
 			log.info("BoardTypeInterceptor - preHandle(전처리) 동작 실행");
 			// Dispatcher Servlet에서 Controller 사이에 가로챈뒤 Controller로
-			// 가져다 주는게 아니라 service로 가서 정보처리후 Controller로 간다
+			// 가져다 주는게 아니라 service로 가서 정보처리후 Interceptor로 간다
+			// ex) 가로챈후 Service -> ServiceImpl -> Mapper -> mapper.xml
 			
 			// boardTypeList 조회 서비스 호출
 			List<Map<String, Object>> boardTypeList = service.selectBoardTypeList();
-			
+			// 0번 리스트 : map{"boardCode" : 1, "boardName" : "공지게시판"}
+			// 1번 리스트 : map{"boardCode" : 2, "boardName" : "정보게시판"}
+			// 2번 리스트 : map{"boardCode" : 3, "boardName" : "자유게시판"}
 			
 			// 조회 결과를 application scope에 추가
 			application.setAttribute("boardTypeList", boardTypeList);
-			
 		}
-		
-		
+		// Interceptor도 filter처럼 여러개 만들 수 있다
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
 
@@ -80,7 +80,7 @@ public class BoardTypeInterceptor implements HandlerInterceptor{
 			HttpServletResponse response, 
 			Object handler,
 			ModelAndView modelAndView) throws Exception {
-		// ModelAndView : 어디로 forward 할건지, 응답을 받고 forward 할때 가로챌 수 있다
+		// ModelAndView : Model 기능 + 어디로 forward 할건지, 응답을 받고 forward 할때 가로챌 수 있다
 		
 		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
 	}

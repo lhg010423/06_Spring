@@ -11,6 +11,8 @@ CREATE TABLE "MEMBER" (
 	"AUTHORITY"	NUMBER	DEFAULT 1	NOT NULL
 );
 
+DROP TABLE "MEMBER";
+
 COMMENT ON COLUMN "MEMBER"."MEMBER_NO" IS '회원 번호(PK)';
 
 COMMENT ON COLUMN "MEMBER"."MEMBER_EMAIL" IS '회원 이메일(ID 역할)';
@@ -34,7 +36,7 @@ COMMENT ON COLUMN "MEMBER"."AUTHORITY" IS '권한(1:일반, 2:관리자)';
 CREATE TABLE "UPLOAD_FILE" (
 	"FILE_NO"	NUMBER		NOT NULL,
 	"FILE_PATH"	VARCHAR2(500)		NOT NULL,
-	"FILE_ORIGINAL_NAME"	VARCAHR2(300)		NOT NULL,
+	"FILE_ORIGINAL_NAME"	VARCHAR2(300)		NOT NULL,
 	"FILE_RENAME"	VARCHAR2(100)		NOT NULL,
 	"FILE_UPLOAD_DATE"	DATE	DEFAULT SYSDATE	NOT NULL,
 	"MEMBER_NO"	NUMBER		NOT NULL
@@ -309,7 +311,7 @@ SELECT * FROM "MEMBER";
 
 -- ALT + X 로 실행
 BEGIN
-	FOR I IN 1..2 LOOP
+	FOR I IN 1..2000 LOOP
 		
 		INSERT INTO "BOARD"
 		VALUES(SEQ_BOARD_NO.NEXTVAL,
@@ -322,7 +324,7 @@ BEGIN
 		
 	END LOOP;
 END;
-
+ROLLBACK;
 COMMIT;
 
 -- 게시판 종류별 샘플 데이터 삽입 확인
@@ -406,7 +408,7 @@ CREATE SEQUENCE SEQ_COMMENT_NO NOCACHE;
 
 
 /* 댓글 ("COMMNET") 테이블에 샘플 데이터 추가*/
-
+-- 집에서 여기까지함 04/28 ----------------------------------------------
 BEGIN
 	FOR I IN 1..2000 LOOP
 	
@@ -416,7 +418,7 @@ BEGIN
 			SEQ_COMMENT_NO.CURRVAL || '번째 댓글 입니다',
 			DEFAULT, DEFAULT,
 			CEIL( DBMS_RANDOM.VALUE(0, 2000) ), -- 게시글번호
-			2, -- 댓글작성회원번호
+			1, -- 댓글작성회원번호
 			NULL -- 부모댓글번호
 		);
 	END LOOP;
@@ -424,6 +426,8 @@ END;
 ;
 
 COMMIT;
+ROLLBACK;
+
 
 -- 게시글 번호 최소값, 최대값
 SELECT MIN(BOARD_NO), MAX(BOARD_NO) FROM "BOARD";
@@ -581,6 +585,7 @@ END;
 ;
 SELECT NEXT_IMG_NO() FROM DUAL;
 
+<<<<<<< HEAD:boardProject_full.sql
 --------------------------------------------------------------------------------------
 
 -- 댓글 0개인 BOARD_NO = 2005
@@ -666,3 +671,8 @@ WHERE COMMENT_NO =
 
 
 
+=======
+COMMIT;
+
+
+>>>>>>> b9900a9474fd7cf772d7078763c17d42c8537b5f:SQL모음/boardProject_full.sql
