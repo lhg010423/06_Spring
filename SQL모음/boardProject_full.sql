@@ -318,7 +318,7 @@ BEGIN
 					 SEQ_BOARD_NO.CURRVAL || '번째 게시글',
 					 SEQ_BOARD_NO.CURRVAL || '번째 게시글 내용 입니다',
 					 DEFAULT, DEFAULT, DEFAULT, DEFAULT,
-					 CEIL( DBMS_RANDOM.VALUE(0,3) ), -- BOARD_CODE(게시판종류)
+					 CEIL( DBMS_RANDOM.VALUE(0,1) ), -- BOARD_CODE(게시판종류)
 					 1 -- MEMBER_NO(작성회원번호)
 		);
 		
@@ -662,17 +662,32 @@ WHERE COMMENT_NO =
 
 
 
-
-
-
-
-
-
-
-
-
-=======
 COMMIT;
 
+--------------------------- SCHEDULE ---------------------------------------
+SELECT * FROM "BOARD_IMG"; -- NVARCHAR2(50)
+SELECT * FROM "MEMBER"; -- VARCHAR2(300)
+-- 둘이 타입이 안맞아서 UNION 안되는걸
+-- 캐스팅으로 해결
 
->>>>>>> b9900a9474fd7cf772d7078763c17d42c8537b5f:SQL모음/boardProject_full.sql
+
+SELECT CAST(IMG_RENAME AS VARCHAR2(300)) "rename"
+FROM BOARD_IMG
+
+UNION
+
+-- -1 은 뒤에서부터 시작해서 첫번째 /까지 짤라낸다
+SELECT SUBSTR(PROFILE_IMG, INSTR(PROFILE_IMG, '/', -1) + 1) "rename"
+FROM "MEMBER"
+WHERE PROFILE_IMG IS NOT NULL;
+-- [72000]: ORA-12704: 문자 집합이 일치하지 않습니다
+-- 하나는 VARCHAR2, 하나는 NVARCHAR2라서 오류남
+
+
+
+
+
+
+
+
+

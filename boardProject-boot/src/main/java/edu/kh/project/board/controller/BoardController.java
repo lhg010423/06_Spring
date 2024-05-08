@@ -91,7 +91,6 @@ public class BoardController {
 		}
 		
 		
-		service.selectBoardList(boardCode, cp);
 		// map으로 만든 이유 pagination, boardList 를 쓰려고
 		
 		model.addAttribute("pagination", map.get("pagination"));
