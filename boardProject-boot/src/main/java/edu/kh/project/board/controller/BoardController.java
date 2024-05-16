@@ -60,7 +60,6 @@ public class BoardController {
 			@PathVariable("boardCode") int boardCode,
 			@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
 			Model model,
-			
 			@RequestParam Map<String, Object> paramMap
 			) {
 		// required = false 를 쓰는 이유 게시판 을 들어가면 cp기본값이 1이고
