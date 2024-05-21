@@ -84,7 +84,8 @@ Dispatcher Servlet <-> Handler
 		ㄴ View Resolver
 
 
-
+AOP  공통되는 부분을 따로 빼내어(관심사 == aspect)
+면접에서 횐단관점 이야기를 말하기
 
 
 
