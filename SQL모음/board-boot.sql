@@ -61,6 +61,20 @@ VALUES(SEQ_MEMBER_NO.NEXTVAL,
 			 DEFAULT
 );
 
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 
+			 'brothernine@gmail.com',
+			 'pass01',
+			 'bronine',
+			 '01012341234',
+			 NULL,
+			 NULL,
+			 DEFAULT,
+			 DEFAULT,
+			 DEFAULT
+);
+
+
 COMMIT;
 
 
